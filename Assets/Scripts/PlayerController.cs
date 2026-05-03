@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
             if (!(playerGridPosition.Equals("Planest(Clone)")))
             {
                 transform.position = new Vector3(currentGrid.transform.position.x, currentGrid.transform.position.y + 1, currentGrid.transform.position.z);
-
+                //transform.rotation = Quaternion.identity;
                 // finds the other viable locations for the player to move to
                 string[] tempCoord = playerGridPosition.Split(',');
                 //print(currentGrid);
@@ -54,14 +54,14 @@ public class PlayerController : MonoBehaviour
                 int tempX = int.Parse(tempCoordx);
                 int tempZ = int.Parse(tempCoordz);
 
-                north = FindGrid(tempX + 1, tempZ);
-                south = FindGrid(tempX - 1, tempZ);
-                east = FindGrid(tempX, tempZ + 1);
-                west = FindGrid(tempX, tempZ - 1);
+                north = FindGrid(tempX, tempZ + 1);
+                south = FindGrid(tempX, tempZ - 1);
+                east = FindGrid(tempX + 1, tempZ);
+                west = FindGrid(tempX - 1, tempZ);
 
                 PositionsHaveBeenSet = true;
 
-                print(north + " " + south + " " + east + " " + west);
+                //print(north + " " + south + " " + east + " " + west);
             }
         }
         else
@@ -74,31 +74,90 @@ public class PlayerController : MonoBehaviour
             // move north
             try
             {
-                if (Keyboard.current.wKey.wasPressedThisFrame)
+                print("Before " + this.transform.eulerAngles.y);
+                if (this.transform.eulerAngles.y < 1)
                 {
-                    print("move north " + north);
-                    transform.position = new Vector3(north.transform.position.x, north.transform.position.y + 1, north.transform.position.z);
-                    PositionsHaveBeenSet = false;
+                    print("After " + this.transform.eulerAngles.y);
+                    if (Keyboard.current.wKey.wasPressedThisFrame)
+                    {
+                        print("move north " + north);
+                        transform.position = new Vector3(north.transform.position.x, north.transform.position.y + 1, north.transform.position.z);
+                        PositionsHaveBeenSet = false;
+                    }
+                    else if (Keyboard.current.sKey.wasPressedThisFrame)
+                    {
+                        print("move south");
+                        transform.position = new Vector3(south.transform.position.x, south.transform.position.y + 1, south.transform.position.z);
+                        PositionsHaveBeenSet = false;
+                    }
                 }
-                else if (Keyboard.current.sKey.wasPressedThisFrame)
+                else if(this.transform.eulerAngles.y < 91)
                 {
-                    print("move south");
-                    transform.position = new Vector3(south.transform.position.x, south.transform.position.y + 1, south.transform.position.z);
-                    PositionsHaveBeenSet = false;
+                    print("does this ever get called");
+                    if (Keyboard.current.wKey.wasPressedThisFrame)
+                    {
+                        print("move east");
+                        transform.position = new Vector3(east.transform.position.x, east.transform.position.y + 1, east.transform.position.z);
+                        PositionsHaveBeenSet = false;
+                    }
+                    else if (Keyboard.current.sKey.wasPressedThisFrame)
+                    {
+                        print("move west");
+                        transform.position = new Vector3(west.transform.position.x, west.transform.position.y + 1, west.transform.position.z);
+                        PositionsHaveBeenSet = false;
+                    }
                 }
-                else if (Keyboard.current.dKey.wasPressedThisFrame)
+                else if (this.transform.eulerAngles.y < 181)
                 {
-                    print("move east");
-                    transform.position = new Vector3(east.transform.position.x, east.transform.position.y + 1, east.transform.position.z);
-                    PositionsHaveBeenSet = false;
+                    if (Keyboard.current.wKey.wasPressedThisFrame)
+                    {
+                        print("move south");
+                        transform.position = new Vector3(south.transform.position.x, south.transform.position.y + 1, south.transform.position.z);
+                        PositionsHaveBeenSet = false;
+                    }
+                    else if (Keyboard.current.sKey.wasPressedThisFrame)
+                    {
+                        print("move north " + north);
+                        transform.position = new Vector3(north.transform.position.x, north.transform.position.y + 1, north.transform.position.z);
+                        PositionsHaveBeenSet = false;
+                    }
+                }
+                else if (this.transform.eulerAngles.y < 271)
+                {
+                    if (Keyboard.current.wKey.wasPressedThisFrame)
+                    {
+                        print("move west");
+                        transform.position = new Vector3(west.transform.position.x, west.transform.position.y + 1, west.transform.position.z);
+                        PositionsHaveBeenSet = false;
+                    }
+                    else if (Keyboard.current.sKey.wasPressedThisFrame)
+                    {
+                        print("move east");
+                        transform.position = new Vector3(east.transform.position.x, east.transform.position.y + 1, east.transform.position.z);
+                        PositionsHaveBeenSet = false;
+                    }
+                }
+
+                if (Keyboard.current.dKey.wasPressedThisFrame)
+                {
+                    //print("move east");
+                    //transform.position = new Vector3(east.transform.position.x, east.transform.position.y + 1, east.transform.position.z);
+                    //PositionsHaveBeenSet = false;
+                    this.transform.eulerAngles = new Vector3(
+                    this.transform.eulerAngles.x,
+                    this.transform.eulerAngles.y + 90,
+                    this.transform.eulerAngles.z );
                 }
                 else if (Keyboard.current.aKey.wasPressedThisFrame)
                 {
-                    print("move west");
-                    transform.position = new Vector3(west.transform.position.x, west.transform.position.y + 1, west.transform.position.z);
-                    PositionsHaveBeenSet = false;
+                    //print("move west");
+                    //transform.position = new Vector3(west.transform.position.x, west.transform.position.y + 1, west.transform.position.z);
+                    //PositionsHaveBeenSet = false;
+                    this.transform.eulerAngles = new Vector3(
+                    this.transform.eulerAngles.x,
+                    this.transform.eulerAngles.y - 90,
+                    this.transform.eulerAngles.z);
                 }
-
             }
             catch
             {
