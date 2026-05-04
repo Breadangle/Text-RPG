@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,8 +11,9 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public string playerGridPosition;
+    public GameObject BattleMenu;
     private Boolean PositionsHaveBeenSet = false;
-    private Boolean BattleOff = true;
+    public Boolean inBattle = false;
     private GameObject north;
     private GameObject south;
     private GameObject east;
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
                 east = FindGrid(tempX + 1, tempZ);
                 west = FindGrid(tempX - 1, tempZ);
 
+
                 PositionsHaveBeenSet = true;
 
                 //print(north + " " + south + " " + east + " " + west);
@@ -70,42 +73,46 @@ public class PlayerController : MonoBehaviour
             print("oops, the player didnt start over a viable grid tile");
         }
 
-        if (PositionsHaveBeenSet && BattleOff)
+        if (PositionsHaveBeenSet && !inBattle)
         {
             // move north
             try
             {
-                print("Before " + this.transform.eulerAngles.y);
+
                 if (this.transform.eulerAngles.y < 1)
                 {
-                    print("After " + this.transform.eulerAngles.y);
+
                     if (Keyboard.current.wKey.wasPressedThisFrame)
                     {
                         print("move north " + north);
                         transform.position = new Vector3(north.transform.position.x, north.transform.position.y + 1, north.transform.position.z);
                         PositionsHaveBeenSet = false;
+                        moved();
                     }
                     else if (Keyboard.current.sKey.wasPressedThisFrame)
                     {
                         print("move south");
                         transform.position = new Vector3(south.transform.position.x, south.transform.position.y + 1, south.transform.position.z);
                         PositionsHaveBeenSet = false;
+                        moved();
                     }
                 }
                 else if(this.transform.eulerAngles.y < 91)
                 {
-                    print("does this ever get called");
+
                     if (Keyboard.current.wKey.wasPressedThisFrame)
                     {
                         print("move east");
                         transform.position = new Vector3(east.transform.position.x, east.transform.position.y + 1, east.transform.position.z);
                         PositionsHaveBeenSet = false;
+                        moved();
                     }
                     else if (Keyboard.current.sKey.wasPressedThisFrame)
                     {
                         print("move west");
                         transform.position = new Vector3(west.transform.position.x, west.transform.position.y + 1, west.transform.position.z);
                         PositionsHaveBeenSet = false;
+                        moved();
                     }
                 }
                 else if (this.transform.eulerAngles.y < 181)
@@ -115,12 +122,14 @@ public class PlayerController : MonoBehaviour
                         print("move south");
                         transform.position = new Vector3(south.transform.position.x, south.transform.position.y + 1, south.transform.position.z);
                         PositionsHaveBeenSet = false;
+                        moved();
                     }
                     else if (Keyboard.current.sKey.wasPressedThisFrame)
                     {
                         print("move north " + north);
                         transform.position = new Vector3(north.transform.position.x, north.transform.position.y + 1, north.transform.position.z);
                         PositionsHaveBeenSet = false;
+                        moved();
                     }
                 }
                 else if (this.transform.eulerAngles.y < 271)
@@ -130,12 +139,14 @@ public class PlayerController : MonoBehaviour
                         print("move west");
                         transform.position = new Vector3(west.transform.position.x, west.transform.position.y + 1, west.transform.position.z);
                         PositionsHaveBeenSet = false;
+                        moved();
                     }
                     else if (Keyboard.current.sKey.wasPressedThisFrame)
                     {
                         print("move east");
                         transform.position = new Vector3(east.transform.position.x, east.transform.position.y + 1, east.transform.position.z);
                         PositionsHaveBeenSet = false;
+                        moved();
                     }
                 }
 
@@ -168,9 +179,20 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    void moved()
     {
-        
+        float randomNumber = UnityEngine.Random.Range(0, 11);
+        print(randomNumber);
+        if (randomNumber == 10)
+        {
+            enterBattle();
+        }
+    }
+    void enterBattle()
+    {
+        BattleMenu.SetActive(true);
+        inBattle = true;
+
     }
 
     GameObject FindGrid(int x, int z)

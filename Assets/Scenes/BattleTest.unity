@@ -233,7 +233,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 876656024}
   m_FillRect: {fileID: 892088725}
   m_HandleRect: {fileID: 876656023}
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78414211}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c65ba626afcb2e40ae6069621fadd16, type: 3}
   m_Name: 
@@ -748,7 +748,7 @@ RectTransform:
   m_Father: {fileID: 40356825}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1279,7 +1279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &765540222
 Transform:
   m_ObjectHideFlags: 0
@@ -1763,6 +1763,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerGridPosition: 
+  BattleMenu: {fileID: 765540221}
+  inBattle: 0
 --- !u!136 &857088457
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1908,7 +1910,7 @@ RectTransform:
   m_Father: {fileID: 1907697243}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1983,7 +1985,7 @@ RectTransform:
   m_Father: {fileID: 1791654177}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2339,6 +2341,7 @@ MonoBehaviour:
   nameText: {fileID: 561820718}
   levelText: {fileID: 408665459}
   hpSlider: {fileID: 1572639828}
+  HPText: {fileID: 0}
 --- !u!114 &1233311609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2503,7 +2506,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1236131548}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1291940411}
+        m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
+        m_MethodName: OnAttackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1236131548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2609,6 +2624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleSystem
   Player: {fileID: 857088455}
   enemyPrefab: {fileID: 4354018691901732372, guid: 30a12d2b05f3f894bb42d2bdddcf615e, type: 3}
+  BattleMenu: {fileID: 765540221}
   enemyBattleStation: {fileID: 347348621}
   dialogueText: {fileID: 1952936633}
   playerHUD: {fileID: 1233311608}
@@ -3190,7 +3206,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1776915846}
   m_FillRect: {fileID: 348028927}
   m_HandleRect: {fileID: 1776915845}
@@ -3356,7 +3372,7 @@ RectTransform:
   m_Father: {fileID: 1247150846}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3451,7 +3467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1796512565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4075,6 +4091,7 @@ MonoBehaviour:
   nameText: {fileID: 1294776643}
   levelText: {fileID: 152641027}
   hpSlider: {fileID: 55113526}
+  HPText: {fileID: 0}
 --- !u!114 &2081634477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4239,7 +4256,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2125783916}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1291940411}
+        m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
+        m_MethodName: OnSkillButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2125783916
 MonoBehaviour:
   m_ObjectHideFlags: 0
