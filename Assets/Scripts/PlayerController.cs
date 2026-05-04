@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public string playerGridPosition;
     private Boolean PositionsHaveBeenSet = false;
+    private Boolean BattleOff = true;
     private GameObject north;
     private GameObject south;
     private GameObject east;
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
             print("oops, the player didnt start over a viable grid tile");
         }
 
-        if (PositionsHaveBeenSet)
+        if (PositionsHaveBeenSet && BattleOff)
         {
             // move north
             try
