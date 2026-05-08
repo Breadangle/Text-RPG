@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
@@ -115,6 +116,7 @@ public class BattleSystem : MonoBehaviour
             BattleMenu.SetActive(false);
             Reset();
             BattleOn.inBattle = false;
+            SceneManager.LoadScene("LoseScreen");
         }
     }
 

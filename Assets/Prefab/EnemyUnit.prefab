@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyUnit
   unitName: Scary Skeleton
   unitLevel: 1
-  damage: 4
+  damage: 20
   maxHP: 30
   currentHP: 30
 --- !u!1 &7571897123555329951

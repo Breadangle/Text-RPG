@@ -7,6 +7,7 @@ public class PlaneBrain : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private int coordinateX;
     private int coordinateZ;
+    public bool exit = false;
     void Start()
     {
         coordinateX = (int)this.transform.position.x / 10;

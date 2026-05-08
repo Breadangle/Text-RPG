@@ -3,6 +3,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static System.Runtime.CompilerServices.RuntimeHelpers;
 using static UnityEngine.UI.Image;
@@ -64,6 +65,11 @@ public class PlayerController : MonoBehaviour
 
 
                 PositionsHaveBeenSet = true;
+
+                if (currentGrid.GetComponent<PlaneBrain>().exit)
+                {
+                    SceneManager.LoadScene("VictoryScreen");
+                }
 
                 //print(north + " " + south + " " + east + " " + west);
             }
