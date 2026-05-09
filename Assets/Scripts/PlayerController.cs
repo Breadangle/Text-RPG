@@ -1,11 +1,13 @@
 using System;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static System.Runtime.CompilerServices.RuntimeHelpers;
+using static UnityEngine.Rendering.DebugUI.Table;
 using static UnityEngine.UI.Image;
 
 public class PlayerController : MonoBehaviour
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public GameObject BattleMenu;
     private Boolean PositionsHaveBeenSet = false;
     public Boolean inBattle = false;
+    public GameObject prefabMiniMap;
     private GameObject north;
     private GameObject south;
     private GameObject east;
@@ -187,12 +190,17 @@ public class PlayerController : MonoBehaviour
 
     void moved()
     {
+        minimap();
         float randomNumber = UnityEngine.Random.Range(0, 11);
         print(randomNumber);
         if (randomNumber == 10)
         {
             enterBattle();
         }
+    }
+    void minimap()
+    {
+        Instantiate(prefabMiniMap, new Vector3(this.transform.eulerAngles.x, -30, this.transform.eulerAngles.z), Quaternion.identity);
     }
     void enterBattle()
     {
