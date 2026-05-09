@@ -190,7 +190,6 @@ public class PlayerController : MonoBehaviour
 
     void moved()
     {
-        minimap();
         float randomNumber = UnityEngine.Random.Range(0, 11);
         print(randomNumber);
         if (randomNumber == 10)

@@ -80,11 +80,27 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        float randomNumber = UnityEngine.Random.Range(1, 6);
+        print(randomNumber);
+        int damageModifier = 1;
+        if(randomNumber < 3)
+        {
+            damageModifier = 1;
+        }
+        else if(randomNumber < 5) 
+        {
+            damageModifier = 2;
+        }
+        else if (randomNumber < 6)
+        {
+            damageModifier = 3;
+        }
+
         dialogueText.text = EnemyUnit.unitName + " attacks!";
 
         yield return new WaitForSeconds(1f);
 
-        bool isDead = PlayerUnit.TakeDamage(EnemyUnit.damage);
+        bool isDead = PlayerUnit.TakeDamage(EnemyUnit.damage * damageModifier);
 
         playerHUD.SetHP(PlayerUnit.currentHP);
 
@@ -127,9 +143,9 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator PlayerHeal ()
     {
-        PlayerUnit.Heal(5);
+        PlayerUnit.Heal(PlayerUnit.maxHP / 2);
         playerHUD.SetHP(PlayerUnit.currentHP);
-        dialogueText.text = "You recover a little";
+        dialogueText.text = "You recover half of your life";
 
         yield return new WaitForSeconds(1f);
 

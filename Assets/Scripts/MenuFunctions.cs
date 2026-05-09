@@ -7,7 +7,7 @@ public class MenuFunctions : MonoBehaviour
 
     public void OnStartButton()
     {
-        SceneManager.LoadScene("BattleTest");
+        SceneManager.LoadScene("AutoMapTest");
     }
 
     public void OnQuitButton()

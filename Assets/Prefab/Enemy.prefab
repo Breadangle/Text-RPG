@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyUnit
   unitName: Spooky Skeleton
   unitLevel: 1
-  damage: 20
+  damage: 6
   maxHP: 30
   currentHP: 30
 --- !u!222 &8916800745943593708
